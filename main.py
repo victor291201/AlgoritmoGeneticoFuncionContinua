@@ -34,20 +34,20 @@ def main():
         results.append(FunctionsGaSchaffer.GAParams(configpruebas[i]))
     print("\n")
     print("Resultados de las pruebas: ")
-    for i in range(len(results)):
+    for i in range(configpruebas[i]["nPruebas"]):
         valX1 = []
         valX2 = []
         valFx = []
         valT = []
         valC = []
-        for e in range(len(results[i])):
+        for e in range(configpruebas[i]["nPruebas"]):
             valX1.append(results[i][e].get("variable")[0])
             valX2.append(results[i][e].get("variable")[1])
             valFx.append(results[i][e].get("function"))
             valT.append(results[i][e].get("time"))
             valC.append(results[i][e].get("iterationsConvergence"))
         data1 = []
-        for e in range(len(results[i])):
+        for e in range(configpruebas[i]["nPruebas"]):
             data1.append([valX1[e], valX2[e], valFx[e], valT[e], valC[e]])
         print("------------------------------------------------------------------------------------------------------")
         print("Resultados de la prueba "+str(i+1)+":")
@@ -79,7 +79,7 @@ def main():
                                           "X1", "X2", "f(x)", "time", "convergencia"], "Varianzas")
         FunctionsGaSchaffer.generateTable([[resumen["desv"][0], resumen["desv"][1], resumen["desv"][2], resumen["desv"][3], resumen["desv"][4]]], [
                                           "X1", "X2", "f(x)", "time", "convergencia"], "Desviaciones estandar")
-        iter = [g for g in range(1, len(results[i])+1)]
+        iter = [g for g in range(1, configpruebas[i]["nPruebas"]+1)]
         FunctionsGaSchaffer.generateGraph(
             iter, valFx, "N. prueba", "f(x)", "f(x) vs Pruebas", True, resumen["media"][2], resumen["media"][3], resumen["media"][4])
         FunctionsGaSchaffer.generateGraph(
